@@ -4,7 +4,7 @@
     "company": "Modenza",
     "description": "This avant-garde lamp adds a stylish touch to any space. Its modern design and high-quality finish make it perfect for contemporary living rooms or offices.",
     "featured": true,
-    "image": "https://images.pexels.com/photos/943150/pexels-photo-943150.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "image": "https://images.pexels.com/photos/1112598/pexels-photo-1112598.jpeg",
     "price": 100,
     "clerkId": "clerkId"
   },
@@ -13,16 +13,16 @@
     "company": "Luxora",
     "description": "The Chic Chair combines elegance with comfort. Its refined upholstery and ergonomic shape make it an ideal choice for modern dining areas or stylish offices.",
     "featured": true,
-    "image": "https://images.pexels.com/photos/5705090/pexels-photo-5705090.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "image": "https://images.pexels.com/photos/2082090/pexels-photo-2082090.jpeg",
     "price": 200,
     "clerkId": "clerkId"
   },
   {
-    "name": "comfy bed",
+    "name": "modern bed",
     "company": "Homestead",
     "description": "Experience ultimate relaxation with this comfy bed. Designed with plush materials and sturdy construction, it guarantees restful nights and a cozy bedroom aesthetic.",
     "featured": true,
-    "image": "https://images.pexels.com/photos/1034584/pexels-photo-1034584.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "image": "https://images.pexels.com/photos/1454806/pexels-photo-1454806.jpeg",
     "price": 300,
     "clerkId": "clerkId"
   },
@@ -31,8 +31,35 @@
     "company": "Comfora",
     "description": "This contemporary sofa offers both style and comfort. Its sleek lines and durable fabric make it a perfect centerpiece for any modern living room.",
     "featured": false,
-    "image": "https://images.pexels.com/photos/1571459/pexels-photo-1571459.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "image": "https://images.pexels.com/photos/1571471/pexels-photo-1571471.jpeg",
     "price": 400,
+    "clerkId": "clerkId"
+  },
+  {
+    "name": "kitchen chairs",
+    "company": "Comfora",
+    "description": "Set of sleek kitchen chairs designed for comfort and durability. Perfect for family meals and casual gatherings, combining modern style with practicality.",
+    "featured": false,
+    "image": "https://images.pexels.com/photos/279648/pexels-photo-279648.jpeg",
+    "price": 600,
+    "clerkId": "clerkId"
+  },
+  {
+    "name": "kitchen table",
+    "company": "Comfora",
+    "description": "A spacious kitchen table crafted from high-quality materials. Ideal for cooking prep, dining, and socializing in a warm, inviting kitchen space.",
+    "featured": false,
+    "image": "https://images.pexels.com/photos/932095/pexels-photo-932095.jpeg",
+    "price": 500,
+    "clerkId": "clerkId"
+  },
+  {
+    "name": "dining table",
+    "company": "Comfora",
+    "description": "Elegant dining table designed to elevate your dining experience. Its clean lines and sturdy build make it perfect for both everyday use and special occasions.",
+    "featured": false,
+    "image": "https://images.pexels.com/photos/460537/pexels-photo-460537.jpeg",
+    "price": 500,
     "clerkId": "clerkId"
   }
 ]
