@@ -20,7 +20,12 @@ export default function LinksDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="flex gap-4 max-w-[100px]">
+        <Button
+          variant="outline"
+          className="flex gap-4 max-w-[100px]"
+          aria-label="Open menu"
+          title="Open menu"
+        >
           <LuAlignLeft className="w-6 h6" />
           <UserIcon />
         </Button>

@@ -6,8 +6,8 @@ import Link from "next/link";
 export default function Logo() {
   return (
     <Button size="icon" asChild>
-      <Link href="/">
-        <HiHome className="w-6 h-6" />
+      <Link href="/" aria-label="Home">
+        <HiHome className="w-6 h-6" aria-hidden="true" />
       </Link>
     </Button>
   );

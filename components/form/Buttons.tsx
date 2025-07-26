@@ -94,13 +94,20 @@ export const CardSubmitButton = ({ isFavorite }: { isFavorite: boolean }) => {
       size="icon"
       variant="outline"
       className="p-2 cursor-pointer"
+      aria-label={
+        pending
+          ? "Adding to favorites"
+          : isFavorite
+          ? "Remove from favorites"
+          : "Add to favorites"
+      }
     >
       {pending ? (
-        <ReloadIcon className="animate-spin" />
+        <ReloadIcon className="animate-spin" aria-hidden="true" />
       ) : isFavorite ? (
-        <FaHeart />
+        <FaHeart aria-hidden="true" />
       ) : (
-        <FaRegHeart />
+        <FaRegHeart aria-hidden="true" />
       )}
     </Button>
   );
