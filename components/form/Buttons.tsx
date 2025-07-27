@@ -32,7 +32,10 @@ export function SubmitButton({
     >
       {pending ? (
         <>
-          <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+          <ReloadIcon
+            className="mr-2 h-4 w-4 animate-spin"
+            aria-hidden="true"
+          />
           Please wait...
         </>
       ) : (
@@ -64,6 +67,7 @@ export const IconButton = ({ actionType }: { actionType: actionType }) => {
       size="icon"
       variant="link"
       className="p-2 cursor-pointer"
+      aria-label={actionType === "edit" ? "Edit item" : "Delete item"}
     >
       {pending ? <ReloadIcon className=" animate-spin" /> : renderIcon()}
     </Button>
@@ -78,9 +82,10 @@ export const CardSignInButton = () => {
         size="icon"
         variant="outline"
         className="p-2 cursor-pointer"
+        aria-label="Sign in to add to favorites"
         asChild
       >
-        <FaRegHeart />
+        <FaRegHeart aria-hidden="true" />
       </Button>
     </SignInButton>
   );
@@ -110,5 +115,15 @@ export const CardSubmitButton = ({ isFavorite }: { isFavorite: boolean }) => {
         <FaRegHeart aria-hidden="true" />
       )}
     </Button>
+  );
+};
+
+export const ProductSignInButton = () => {
+  return (
+    <SignInButton mode="modal">
+      <Button type="button" className="mt-8">
+        Sign In
+      </Button>
+    </SignInButton>
   );
 };

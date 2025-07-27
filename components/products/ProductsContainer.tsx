@@ -29,8 +29,11 @@ async function ProductsContainer({
               size="icon"
               asChild
             >
-              <Link href={`/products?layout=grid${searchTerm}`}>
-                <LuLayoutGrid />
+              <Link
+                href={`/products?layout=grid${searchTerm}`}
+                aria-label="Switch to grid layout"
+              >
+                <LuLayoutGrid aria-hidden="true" />
               </Link>
             </Button>
             <Button
@@ -38,8 +41,11 @@ async function ProductsContainer({
               size="icon"
               asChild
             >
-              <Link href={`/products?layout=list${searchTerm}`}>
-                <LuList />
+              <Link
+                href={`/products?layout=list${searchTerm}`}
+                aria-label="Switch to list layout"
+              >
+                <LuList aria-hidden="true" />
               </Link>
             </Button>
           </div>
