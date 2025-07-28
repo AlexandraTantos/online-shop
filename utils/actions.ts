@@ -1,6 +1,8 @@
 "use server";
 import db from "@/utils/db";
 import { auth, currentUser } from "@clerk/nextjs/server";
+import { Cart } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import {
   imageSchema,
@@ -8,10 +10,7 @@ import {
   reviewSchema,
   validateWithZodSchema,
 } from "./schema";
-import { deleteImage, supabase, uploadImage } from "./supabase";
-import { revalidatePath } from "next/cache";
-import { string } from "zod";
-import { Cart } from "@prisma/client";
+import { deleteImage, uploadImage } from "./supabase";
 
 export const fetchFeaturedProducts = async () => {
   const products = await db.product.findMany({
@@ -496,9 +495,34 @@ export const addToCartAction = async (prevState: any, formData: FormData) => {
   }
   redirect("/cart");
 };
-
-export const createOrderAction = async (pevState: any, formData: FormData) => {
-  return { message: "order created" };
+export const updateCartItemAction = async ({
+  amount,
+  cartItemId,
+}: {
+  amount: number;
+  cartItemId: string;
+}) => {
+  const user = await getAuthUser();
+  try {
+    const cart = await fetchOrCreateCart({
+      userId: user.id,
+      errorOnFailure: true,
+    });
+    await db.cartItem.update({
+      where: {
+        id: cartItemId,
+        cartId: cart.id,
+      },
+      data: {
+        amount,
+      },
+    });
+    await updateCart(cart);
+    revalidatePath("/");
+    return { message: "cart updated" };
+  } catch (error) {
+    return renderError(error);
+  }
 };
 
 export const removeCartItemAction = async (
@@ -525,4 +549,60 @@ export const removeCartItemAction = async (
   } catch (error) {
     return renderError(error);
   }
+};
+
+export const createOrderAction = async (prevState: any, formData: FormData) => {
+  const user = await getAuthUser();
+  try {
+    const cart = await fetchOrCreateCart({
+      userId: user.id,
+      errorOnFailure: true,
+    });
+    const order = await db.order.create({
+      data: {
+        clerkId: user.id,
+        products: cart.numItemsInCart,
+        orderTotal: cart.orderTotal,
+        tax: cart.tax,
+        shipping: cart.shipping,
+        email: user.emailAddresses[0].emailAddress,
+      },
+    });
+
+    await db.cart.delete({
+      where: {
+        id: cart.id,
+      },
+    });
+  } catch (error) {
+    return renderError(error);
+  }
+  redirect("/orders");
+};
+export const fetchUserOrders = async () => {
+  const user = await getAuthUser();
+  const orders = await db.order.findMany({
+    where: {
+      clerkId: user.id,
+      isPaid: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+  return orders;
+};
+
+export const fetchAdminOrders = async () => {
+  await getAdminUser();
+
+  const orders = await db.order.findMany({
+    where: {
+      isPaid: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+  return orders;
 };
